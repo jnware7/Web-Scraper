@@ -27,3 +27,16 @@ title: $(‘.grid-list-artwork-title’).text()
 
 
 image : $(‘.grid-list-artwork-thumbnail’)
+
+http://www.salvador-dali.org/en/artwork/the-collection/page/1
+http://www.salvador-dali.org/en/artwork/the-collection/page/2
+http://www.salvador-dali.org/en/artwork/the-collection/page/3
+http://www.salvador-dali.org/en/artwork/the-collection/page/4
+http://www.salvador-dali.org/en/artwork/the-collection/page/5
+http://www.salvador-dali.org/en/artwork/the-collection/page/6
+http://www.salvador-dali.org/en/artwork/the-collection/page/7
+http://www.salvador-dali.org/en/artwork/the-collection/page/8
+
+title: $('.content h2')
+
+image: $('.content img')
