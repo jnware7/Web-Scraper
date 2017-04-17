@@ -1,0 +1,29 @@
+Met
+
+url : http://www.metmuseum.org/art/collection
+
+image: $('figure image')
+
+title: $('h2 .ng-binding').text()
+
+The Broad
+
+http://www.thebroad.org/art/jean%E2%80%90michel-basquiat
+
+image: $('.view-content img')
+
+title:  $('.field-content a').text()
+
+http://www.thebroad.org/art/keith-haring
+
+image: $('.view-content img')
+
+title:  $('.field-content a').text()
+
+SF MOMA
+https://www.sfmoma.org/artists-artworks/
+
+title: $(‘.grid-list-artwork-title’).text()
+
+
+image : $(‘.grid-list-artwork-thumbnail’)
