@@ -2,7 +2,7 @@
 Web Scraper with Node.js
 Challenge Rubric
 
-This Goal will likely be in your ZPD if you…
+## This Goal will likely be in your ZPD if you…
 
 Have built a full-stack application
 Have worked with databases
@@ -20,13 +20,13 @@ Web scrapers are used to pull information from websites where no API is availabl
 
 When designing your scraper think about the kind of data you want to receive. It is possible to search a single page for information or search multiple pages at once for a specific type of content (i.e searching multiple sites to find videos about puppies.) It is your job to build a simple web scraper and then modify it to search for information from several different sites to populate your app.
 
-Context
+## Context
 
 There are many common / practical uses to this, and this is a technique employed by many companies these days. A scraper can be used to populate a list of movies, or particular blogs that you like.
 
 This project also gives you a great practical example of the limits that efficient code can bring, since you will be pushing the limit of a process when your crawler is running.
 
-Specifications
+## Specifications
 
 Follow the tutorial here: https://scotch.io/tutorials/scraping-the-web-with-node-js
 
@@ -42,7 +42,7 @@ Follow the tutorial here: https://scotch.io/tutorials/scraping-the-web-with-node
   - [ ] Variables, functions, CSS classes, etc. are meaningfully
   - [ ] Functions are small and serve a single purpose
   - [ ] Code is well organized into a meaningful file structure
-Stretch
+## Stretch
 
  Recreate the project without jQuery or Request
  Recreate the project with another type of content
