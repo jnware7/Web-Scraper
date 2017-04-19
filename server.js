@@ -1,45 +1,67 @@
 var express = require('express');
 var fs = require('fs');
-var request = require('request');
+var request = require('request-promise');
 var cheerio = require('cheerio');
 var app = express();
 
+app.use(express.static(__dirname + '/public'));
+
+app.set('views', './views')
+app.set('view engine', 'pug')
 
 // THE BROAD
+var scrapTheBoard = function(artist){
+  var url = "http://www.thebroad.org/art/"+encodeURIComponent(artist)
+  return request(url)
+    .then(extractArt)
+}
+var extractArt = function(html){
+  var $ = cheerio.load(html);
+  var paintings = []
 
-app.get('/scrape', function(req, res){
-
-  url = 'http://www.thebroad.org/art/jean%E2%80%90michel-basquiat';
-
-  request(url, function(error, response, html){
-    if (error){
-      response.status(500).send(error.message)
-      return
-    }
-
-
-    var $ = cheerio.load(html);
-    var paintings = []
-
-    $('.view-content > .views-row').each(function(){
-      var painting = $(this)
-      var title = painting.find('a[href]').text()
-      var imageURL = painting.find('img').attr('src')
-      paintings.push({
-        title: title,
-        imageURL: imageURL
-      })
+  $('.view-content > .views-row').each(function(){
+    var painting = $(this)
+    var title = painting.find('a[href]').text()
+    var imageURL = painting.find('img').attr('src')
+    paintings.push({
+      title: title,
+      imageURL: imageURL
     })
-    fs.writeFile('output.json', JSON.stringify(paintings, null, 2), function(err){
-      if (err) throw err
-      console.log('File successfully written! - Check your project directory for output.json file');
-    })
-    res.send(paintings)
   })
+  return paintings
+}
+app.get('/scrape', function(req, res){
+  Promise.all([
+    scrapTheBoard('jean‐michel-basquiat'),
+    scrapTheBoard('keith-haring'),
+    scrapTheBoard('mark-bradford'),
+    scrapTheBoard('barbara-kruger'),
+    scrapTheBoard('neo-rauch'),
+  ])
+  .then(function(allPaintings){
+    return allPaintings.reduce(function(a,b){
+      return a.concat(b)
+    })
+  })
+  .then(function(paintings){
+       paintings.sort().reverse()
+       res.render('index', {paintings})
+       console.log(paintings)
+  })
+  .catch(function(err){
+    res.status(500).send(err.message)
+  })
+
+  //   fs.writeFile('output.json', JSON.stringify(paintings, null, 2), function(err){
+  //     if (err) throw err
+  //     console.log('File successfully written! - Check your project directory for output.json file');
+  //   })
+  //   res.send(paintings)
+  // })
 })
 
 // app.get('/scrape', function(req, res){
-//
+
 //   url = 'http://www.thebroad.org/art/keith-haring';
 //
 //   request(url, function(error, response, html){
@@ -69,7 +91,7 @@ app.get('/scrape', function(req, res){
 //     console.log('party time?', paintings)
 //   })
 // })
-
+//
 
 
 

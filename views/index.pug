@@ -1,0 +1,13 @@
+html
+  head
+    title= title
+    link(rel='stylesheet',type='text/css' href='/styles.css')
+    link(href='https://fonts.googleapis.com/css?family=Amatic+SC', rel='stylesheet')  
+  body
+    h1#title Guess The Artist...
+  center
+    section#photos
+      each val in paintings
+          img.html2pug(style='padding:20px;')(src=val.imageURL,alt=val.title,title=val.title)
+      
+          
