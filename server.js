@@ -4,10 +4,12 @@ var request = require('request-promise');
 var cheerio = require('cheerio');
 var app = express();
 
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'));
 
 app.set('views', './views')
 app.set('view engine', 'pug')
+
+
 
 // THE BROAD
 var scrapTheBoard = function(artist){
@@ -31,16 +33,29 @@ var extractArt = function(html){
   return paintings
 }
 app.get('/scrape', function(req, res){
-  scrapTheBoard('jean‐michel-basquiat')
-  .then(function(paintings){
-    //  res.json(paintings)
 
+  Promise.all([
+    scrapTheBoard('jean‐michel-basquiat'),
+    scrapTheBoard('keith-haring'),
+    scrapTheBoard('mark-bradford'),
+    scrapTheBoard('barbara-kruger'),
+    scrapTheBoard('neo-rauch'),
+  ])
+  .then(function(allPaintings){
+    return allPaintings.reduce(function(a,b){
+      return a.concat(b)
+    })
+  })
+  .then(function(paintings){
+       paintings.sort().reverse()
        res.render('index', {paintings})
        console.log(paintings)
   })
   .catch(function(err){
     res.status(500).send(err.message)
   })
+
+
 
   //   fs.writeFile('output.json', JSON.stringify(paintings, null, 2), function(err){
   //     if (err) throw err

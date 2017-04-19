@@ -1,0 +1,10 @@
+#title{
+  background-color: yellow;
+  font-family: 'Amatic SC', cursive;
+  font-size: 40px;
+}
+
+img:hover {
+    background-color: yellow;
+    opacity: 0.7;
+}
