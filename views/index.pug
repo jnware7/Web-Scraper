@@ -1,0 +1,11 @@
+html
+  title = title
+  link(rel='stylesheet', href='../public/styles.css')
+body
+  h1#title Guess The artist...
+center
+  section#photos
+    each val in paintings.reverse()
+      a(href='')
+        img.html2pug(style='padding: 20px;')(src=val.imageURL,alt=val.title,title=val.title)
+          
