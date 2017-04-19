@@ -17,6 +17,24 @@ var scrapTheBoard = function(artist){
   return request(url)
     .then(extractArt)
 }
+var shuffleArt = function(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
 var extractArt = function(html){
   var $ = cheerio.load(html);
   var paintings = []
@@ -47,7 +65,7 @@ app.get('/scrape', function(req, res){
     })
   })
   .then(function(paintings){
-       paintings.sort().reverse()
+       shuffleArt(paintings)
        res.render('index', {paintings})
        console.log(paintings)
   })
