@@ -3,8 +3,24 @@
   font-family: 'Amatic SC', cursive;
   font-size: 40px;
 }
+#photos{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.painting:hover {
+  background-color: yellow;
+  opacity: 0.7;
 
-img:hover {
-    background-color: yellow;
-    opacity: 0.7;
+}
+.painting-title{
+  font-family: 'Amatic SC', cursive;
+  font-size: 23px;
+  display: none;
+}
+ .painting{
+  font-family: 'Amatic SC', cursive;
+  font-size: 18px;
+  margin-left: 10px;
+  padding: 20px;
 }

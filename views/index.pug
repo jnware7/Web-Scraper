@@ -1,13 +1,22 @@
 html
   head
-    title= title
+    title Art?
     link(rel='stylesheet',type='text/css' href='/styles.css')
     link(href='https://fonts.googleapis.com/css?family=Amatic+SC', rel='stylesheet')  
+    script(src='https://code.jquery.com/jquery-3.2.1.js', integrity='sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=', crossorigin='anonymous')
+    script(src='/selector.js')
+      
   body
     h1#title Guess The Artist...
-  center
+   
+    div
     section#photos
       each val in paintings
-          img.html2pug(style='padding:20px;')(src=val.imageURL,alt=val.title,title=val.title)
+        .painting
+          .painting-title= val.title
+          img.painting-pic(style='padding:20px;')(src=val.imageURL,alt=val.title,title=val.title) 
+          
+
       
           
+  
