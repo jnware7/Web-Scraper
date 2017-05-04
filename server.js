@@ -117,7 +117,7 @@ app.get('/scrape', function(req, res){
 //
 
 
+const port = process.env.PORT || 8081;
+app.listen(port,()=>{'Guess the artist!'});
 
-app.listen('8081');
-console.log('Guess the artist!');
 module.exports = app;
