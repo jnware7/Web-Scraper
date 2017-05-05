@@ -9,6 +9,8 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', './views')
 app.set('view engine', 'pug')
 
+
+
 // THE BROAD
 var scrapTheBoard = function(artist){
   var url = "http://www.thebroad.org/art/"+encodeURIComponent(artist)
@@ -49,6 +51,7 @@ var extractArt = function(html){
   return paintings
 }
 app.get('/scrape', function(req, res){
+
   Promise.all([
     scrapTheBoard('jean‐michel-basquiat'),
     scrapTheBoard('keith-haring'),
@@ -77,6 +80,8 @@ app.get('/scrape', function(req, res){
   .catch(function(err){
     res.status(500).send(err.message)
   })
+
+
 
   //   fs.writeFile('output.json', JSON.stringify(paintings, null, 2), function(err){
   //     if (err) throw err
@@ -120,7 +125,7 @@ app.get('/scrape', function(req, res){
 //
 
 
+const port = process.env.PORT || 8081;
+app.listen(port,()=>{'Guess the artist!'});
 
-app.listen('8081');
-console.log('Guess the artist!');
 module.exports = app;
