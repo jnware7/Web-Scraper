@@ -58,6 +58,14 @@ app.get('/scrape', function(req, res){
     scrapTheBoard('mark-bradford'),
     scrapTheBoard('barbara-kruger'),
     scrapTheBoard('neo-rauch'),
+    scrapTheBoard('frank-stella'),
+    scrapTheBoard('robert-therrien'),
+    scrapTheBoard('philip-taaffe'),
+    scrapTheBoard('william-kentridge'),
+    scrapTheBoard('kara-walker'),
+    scrapTheBoard('glenn-ligon'),
+    scrapTheBoard('takashi-murakami'),
+    scrapTheBoard('albert-oehlen')
   ])
   .then(function(allPaintings){
     return allPaintings.reduce(function(a,b){
